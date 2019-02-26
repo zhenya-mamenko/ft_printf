@@ -6,13 +6,16 @@
 /*   By: emamenko <emamenko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/25 10:26:32 by emamenko          #+#    #+#             */
-/*   Updated: 2019/02/25 17:24:33 by emamenko         ###   ########.fr       */
+/*   Updated: 2019/02/25 22:11:41 by emamenko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static
+void	print_simple(char *s, int len)
+{
+	write(1, s, len);
+}
 
 int		ft_printf(const char *format, ...)
 {

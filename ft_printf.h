@@ -6,7 +6,7 @@
 /*   By: emamenko <emamenko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/25 10:24:06 by emamenko          #+#    #+#             */
-/*   Updated: 2019/02/25 17:24:24 by emamenko         ###   ########.fr       */
+/*   Updated: 2019/02/25 22:11:42 by emamenko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,5 +18,6 @@
 # include <stdarg.h>
 
 int		ft_printf(const char *format, ...);
+void	print_simple(char *s, int len);
 
 #endif
