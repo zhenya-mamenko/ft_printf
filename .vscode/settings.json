@@ -1,2 +1,9 @@
 {
+	"editor.tabSize": 4,
+	"editor.renderWhitespace": "boundary",
+	"editor.insertSpaces": false,
+	"code-eol.color": "#3b3b3b",
+	"files.trimTrailingWhitespace": true,
+	"norminette.command": "norminette",
+	"norminette.fileregex": "^ft.*\\.[ch]$",
 }

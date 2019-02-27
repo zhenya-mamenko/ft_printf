@@ -6,7 +6,7 @@
 /*   By: emamenko <emamenko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/25 10:24:06 by emamenko          #+#    #+#             */
-/*   Updated: 2019/02/26 08:35:27 by emamenko         ###   ########.fr       */
+/*   Updated: 2019/02/26 20:58:46 by emamenko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,5 +18,7 @@
 # include <stdarg.h>
 
 int		ft_printf(const char *format, ...);
+char	*ft_itoa_base(long long value, int base, char *base_str);
+char	*ft_itoa_base_u(unsigned long long value, int base, char *base_str);
 
 #endif
