@@ -6,7 +6,7 @@
 /*   By: emamenko <emamenko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/26 17:30:12 by emamenko          #+#    #+#             */
-/*   Updated: 2019/02/26 20:59:50 by emamenko         ###   ########.fr       */
+/*   Updated: 2019/02/26 22:53:48 by emamenko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static void	to_base(char *r, unsigned long long value, int base, char *b_str)
 	*r = b_str[value % base];
 	r--;
 	value /= base;
-	if (value >= base)
+	if (value >= (unsigned int)base)
 		to_base(r, value, base, b_str);
 	else
 		*r = b_str[value];
