@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   write.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emamenko <emamenko@student.42.fr>          +#+  +:+       +#+        */
+/*   By: emamenko <emamenko@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/27 10:49:27 by emamenko          #+#    #+#             */
-/*   Updated: 2019/02/27 11:48:41 by emamenko         ###   ########.fr       */
+/*   Updated: 2019/02/27 17:16:15 by emamenko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,18 +27,19 @@ void		write_str(char *s)
 	write(1, s, len(s));
 }
 
-void		write_ll(char f, long long v)
+int			write_ll(char f, long long v)
 {
 	char	*s;
 
 	if (f == 'd' || f == 'i')
 		s = ft_itoa_base(v, 10, g_bstr);
 	else
-		return ;
+		return (1);
 	write_str(s);
+	return (0);
 }
 
-void		write_ull(char f, unsigned long long v)
+int			write_ull(char f, unsigned long long v)
 {
 	char	*s;
 
@@ -56,6 +57,7 @@ void		write_ull(char f, unsigned long long v)
 	else if (f == 'b')
 		s = ft_itoa_base_u(v, 2, g_bstr);
 	else
-		return ;
+		return (1);
 	write_str(s);
+	return (0);
 }
