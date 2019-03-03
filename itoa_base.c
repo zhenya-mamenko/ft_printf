@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_itoa_base.c                                     :+:      :+:    :+:   */
+/*   itoa_base.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: emamenko <emamenko@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/26 17:30:12 by emamenko          #+#    #+#             */
-/*   Updated: 2019/02/27 22:56:57 by emamenko         ###   ########.fr       */
+/*   Updated: 2019/03/02 18:49:05 by emamenko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static int	len(unsigned long long value, int base)
+static int	len_base(unsigned long long value, int base)
 {
 	int		l;
 
@@ -47,13 +47,13 @@ static void	to_base_u(char *r, unsigned long long value, int base, char *b_str)
 		*r = b_str[value];
 }
 
-char		*ft_itoa_base_u(unsigned long long value, int base, char *base_str)
+char		*itoa_base_u(unsigned long long value, int base, char *base_str)
 {
 	char	*result;
 	char	*s;
 	int		l;
 
-	l = len(value, base);
+	l = len_base(value, base);
 	result = malloc(sizeof(char) * (l + 1));
 	s = result;
 	result[l] = '\0';
@@ -61,13 +61,13 @@ char		*ft_itoa_base_u(unsigned long long value, int base, char *base_str)
 	return (s);
 }
 
-char		*ft_itoa_base(long long value, int base, char *base_str)
+char		*itoa_base(long long value, int base, char *base_str)
 {
 	char	*result;
 	char	*s;
 	int		l;
 
-	l = len(value >= 0 ? value : -(value / 10), base) + (value < 0 ? 2 : 0);
+	l = len_base(value >= 0 ? value : -(value / 10), base) + (value < 0 ? 2 : 0);
 	result = malloc(sizeof(char) * (l + 1));
 	s = result;
 	result[l] = '\0';
