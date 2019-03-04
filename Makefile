@@ -6,7 +6,7 @@
 #    By: emamenko <emamenko@student.42.us.org>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/02/11 13:54:51 by emamenko          #+#    #+#              #
-#    Updated: 2019/03/03 16:23:18 by emamenko         ###   ########.fr        #
+#    Updated: 2019/03/03 17:01:40 by emamenko         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME	:=	libftprintf.a
 
 .PHONY:		$(NAME) all clean fclean re
 
-SOURCES	:=	ft_printf.c vaprintf.c \
+SOURCES	:=	ft_printf.c vaprintf.c resolvers.c \
 			\
 			formats/string.c formats/integer.c formats/float.c formats/ext.c \
 			\

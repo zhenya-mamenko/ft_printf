@@ -6,7 +6,7 @@
 /*   By: emamenko <emamenko@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/03 12:43:23 by emamenko          #+#    #+#             */
-/*   Updated: 2019/03/03 16:19:27 by emamenko         ###   ########.fr       */
+/*   Updated: 2019/03/03 16:54:27 by emamenko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 extern char	*g_output;
 
-void		write_str_n(const char *s, int l)
+int		write_str_n(const char *s, int l)
 {
 	char	*tmp;
 	char	*ss;
@@ -24,19 +24,25 @@ void		write_str_n(const char *s, int l)
 	free(g_output);
 	free(ss);
 	g_output = tmp;
+	return (l);
 }
 
-void		write_str(const char *s)
+int		write_str(const char *s)
 {
-	write_str_n(s, len(s));
+	int		l;
+
+	l = len(s);
+	write_str_n(s, l);
+	return (l);
 }
 
-void		write_flags_str(char *s, int n, unsigned long f, char ch)
+void	write_flags_str(char *s, int n, unsigned long f, char ch)
 {
 	int		l;
 	int		w[2];
 	char	c;
 	int		sign;
+	int		tmp;
 
 	sign = ((f & 256) && (ch == 'i' || ch == 'd') && s[0] != '-') ? 1 : 0;
 	l = n != 0 && len(s) > n ? n : len(s);
@@ -50,22 +56,11 @@ void		write_flags_str(char *s, int n, unsigned long f, char ch)
 		write_str_n(s, l);
 		return ;
 	}
-	if ((f & 512))
-	{
-		if (sign == 1)
-			write_str("+");
-		if (w[1] > l && ch != 's')
-			filler('0', w[1] - l);
-		write_str_n(s, l);
-		filler(c, w[0] - (l > w[1] ? l : w[1]));
-	}
-	else
-	{
+	if (!(f & 512))
 		filler(c, w[0] - (l > w[1] ? l : w[1]) - sign);
-		if (sign == 1)
-			write_str("+");
-		if (w[1] > l && ch != 's')
-			filler('0', w[1] - l);
-		write_str_n(s, l);
-	}
+	tmp = (sign == 1) ? write_str("+") : 0;
+	tmp = (w[1] > l && ch != 's') ? filler('0', w[1] - l) : 0;
+	write_str_n(s, l);
+	if (f & 512)
+		filler(c, w[0] - (l > w[1] ? l : w[1]));
 }
