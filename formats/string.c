@@ -6,7 +6,7 @@
 /*   By: emamenko <emamenko@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/03 12:43:23 by emamenko          #+#    #+#             */
-/*   Updated: 2019/03/03 16:54:27 by emamenko         ###   ########.fr       */
+/*   Updated: 2019/03/03 18:14:34 by emamenko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,8 @@ void	write_flags_str(char *s, int n, unsigned long f, char ch)
 	c = f & 64 ? '0' : ' ';
 	if (w[0] <= l && w[1] < l)
 	{
-		if ((f & 256) && (ch == 'i' || ch == 'd' || ch == 'f') && s[0] != '-')
-			write_str(" ");
+		if ((f & 384) && (ch == 'i' || ch == 'd' || ch == 'f') && s[0] != '-')
+			write_str((sign == 1) ? "+" : " ");
 		write_str_n(s, l);
 		return ;
 	}

@@ -6,7 +6,7 @@
 /*   By: emamenko <emamenko@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/02 12:13:29 by emamenko          #+#    #+#             */
-/*   Updated: 2019/03/03 16:19:27 by emamenko         ###   ########.fr       */
+/*   Updated: 2019/03/03 20:06:49 by emamenko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,12 +54,11 @@ static void			to_s(long double v, char *s)
 	if (t >= 1.0L)
 	{
 		to_s(t, s - 1);
-		t = v - t * 10;
-		while (t >= 10)
-		{
-			t -= 10;
-			*(s - 1) += 1;
-		}
+		t = v - t * 10.0L;
+		while (t >= 10.0L)
+			t -= 10.0L;
+		while (t < 0.0L)
+			t += 10.0L;
 		*s = (char)(t) + '0';
 	}
 	else
@@ -70,35 +69,40 @@ void				write_float(char f, long double v, unsigned long flags)
 {
 	unsigned long long	l;
 	unsigned long long	i;
-	char				*res;
+	char				*res[4];
 	long double			t;
 
 	l = flen(v) + (v < 0 ? 1 : 0) + (f == 'f' ? 0 : 0);
-	res = malloc(sizeof(char) * (l + 1));
-	res[l] = '\0';
+	res[0] = malloc(sizeof(char) * (l + 1));
+	res[0][l] = '\0';
 	if (v < 0)
 	{
-		res[0] = '-';
+		res[0][0] = '-';
 		v = -v;
 	}
 	t = dmodf(v, &t);
-	to_s(v, res + l - 1);
+	while (t >= 1.0L)
+		t -= 1.0L;
+	to_s(v, res[0] + l - 1);
 	l = (flags & 32) ? (flags & (255LL << 48)) >> 48 : 6;
-	write_flags_str(res, 0, flags, 'f');
-	write_str(res);
-	free(res);
 	if ((t == 0.0L && l == 0) || l == 0)
 	{
-		if (flags & 16)
-			write_str(".0");
-		return ;
+		res[1] = (flags & 16) ? "0" : NULL;
 	}
-	i = l;
-	while (i-- > 0)
-		t *= 10;
-	write_str(".");
-	res = itoa_base_u((unsigned long)(t + 0.5), 10, "0123456789");
-	filler('0', l - len(res));
-	write_str(res);
-	free(res);
+	else
+	{
+		i = l;
+		while (i-- > 0)
+			t *= 10.0L;
+		res[1] = itoa_base_u((unsigned long)(t + 0.5L), 10, "0123456789");
+	}
+	res[2] = filler_s('0', l - len(res[1]));
+	res[3] = join(4, res[0], res[1] != NULL ? "." : "", res[2], res[1]);
+	write_flags_str(res[3], 0, flags, 'f');
+	free(res[0]);
+	if (res[1] && l != 0)
+		free(res[1]);
+	if (res[2])
+		free(res[2]);
+	free(res[3]);
 }

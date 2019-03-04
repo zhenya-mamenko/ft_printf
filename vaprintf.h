@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vaprintf.h                                        :+:      :+:    :+:   */
+/*   vaprintf.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: emamenko <emamenko@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/25 10:24:06 by emamenko          #+#    #+#             */
-/*   Updated: 2019/03/03 16:05:16 by emamenko         ###   ########.fr       */
+/*   Created: 2019/03/03 18:18:18 by emamenko          #+#    #+#             */
+/*   Updated: 2019/03/03 19:22:20 by emamenko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ void				write_float(char f, long double v,
 						unsigned long flags);
 int					atoi_s(char **str);
 int					filler(char c, int l);
+char				*filler_s(char c, int l);
 void				int_wrapper(va_list av, unsigned long flags, char type);
 int					len(const char *s);
 int					compare(const char *s1, const char *s2, size_t n);

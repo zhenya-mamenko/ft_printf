@@ -7,3 +7,4 @@ main.c
 *.o
 test
 run_test
+run_test.dSYM/

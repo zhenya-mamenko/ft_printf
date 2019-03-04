@@ -6,12 +6,12 @@
 /*   By: emamenko <emamenko@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/02 19:33:21 by emamenko          #+#    #+#             */
-/*   Updated: 2019/03/03 14:04:48 by emamenko         ###   ########.fr       */
+/*   Updated: 2019/03/03 18:17:00 by emamenko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef EX_FORMAT_H
-# define EX_FORMAT_H
+#ifndef EXT_H
+# define EXT_H
 
 # define ESC		"\x1b["
 # define TERM		"m"

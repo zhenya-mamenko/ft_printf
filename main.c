@@ -14,9 +14,9 @@ int main(int ac, char **av)
 	}
 
 	ft_printf("%c\n", 'A');
-	ft_printf("ft_printf -- p=%p, i=%hhi, d=%d, o=%ho, u=%lu, x=%llx, X=%X, #o=%#o\n", p, (char)-123, -456, (unsigned short)177789,
+	ft_printf("ft_printf -- p=%p, i=%hhi, d=% d, o=%ho, u=%lu, x=%llx, X=%X, #o=%#o\n", p, (char)-123, 456, (unsigned short)177789,
 		(unsigned long)123, (unsigned long long)9223372036854775807LL, 255, 64);
-	printf("printf    -- p=%p, i=%hhi, d=%d, o=%ho, u=%lu, x=%llx, X=%X, #o=%#o\n", p, (char)-123, -456, (unsigned short)177789,
+	printf("printf    -- p=%p, i=%hhi, d=% d, o=%ho, u=%lu, x=%llx, X=%X, #o=%#o\n", p, (char)-123, 456, (unsigned short)177789,
 		(unsigned long)123, (unsigned long long)9223372036854775807LL, 255, 64);
 
 	ft_printf("ft_printf -- |%10.5s| % 8d|\n", "123456789", 123987);
@@ -24,9 +24,9 @@ int main(int ac, char **av)
 
 	ft_printf("ft_printf -- binary=%015b\n", 160);
 
-	long double ld = -12345678901234567890123456789.001234567890L;
+	long double ld = 98765432101234567890123456789.1234567890L;
 	//printf("%.10Lf\n", __LDBL_MAX__);
-	long long ll = (long long)ld;
+/*	long long ll = (long long)ld;
 
 	printf("f=%.20f\nLf=%.20Lf\nlast digit = %Lf\nf=%.30f\nlong=%llu\n",
 		123456789012345678901234567890123456789.12345678901234567890,
@@ -34,7 +34,7 @@ int main(int ac, char **av)
 		ld - (ld / 10),
 		0.12345678901234567890123456789,
 		ll);
-
+*/
 	printf("%.5Lf \n", ld);
 	ft_printf("%.5Lf\n", ld);
 	printf("%10.3f\n", 10.12);

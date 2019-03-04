@@ -6,18 +6,22 @@
 /*   By: emamenko <emamenko@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/03 16:59:55 by emamenko          #+#    #+#             */
-/*   Updated: 2019/03/03 17:06:26 by emamenko         ###   ########.fr       */
+/*   Updated: 2019/03/03 17:36:09 by emamenko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vaprintf.h"
 
-static void		check_and_set(unsigned long *result, char *f, char c,
-	unsigned long flag)
+static int		check_and_set(unsigned long *result, char **f,
+	const char c, const unsigned long flag)
 {
-	if (c == *f)
+	if (*f && c == (*f)[1])
+	{
 		*result |= flag;
-	f++;
+		(*f)++;
+		return (1);
+	}
+	return (0);
 }
 
 unsigned long	resolve_flags(char **s)
@@ -26,33 +30,13 @@ unsigned long	resolve_flags(char **s)
 	unsigned long	l;
 
 	result = 0;
-
-	check_and_set(&result, )
-	if ((*s)[1] == '#')
-	{
-		result |= 16;
-		(*s) += 1;
-	}
-	if ((*s)[1] == ' ')
-	{
-		result |= 128;
-		(*s) += 1;
-	}
-	if ((*s)[1] == '-')
-	{
-		result |= 512;
-		(*s) += 1;
-	}
-	if ((*s)[1] == '+')
-	{
-		result = (result & ~128) | 256;
-		(*s) += 1;
-	}
-	if ((*s)[1] == '0')
-	{
-		result |= (result & 512 ? 0 : 64);
-		(*s) += 1;
-	}
+	check_and_set(&result, s, '#', 16);
+	check_and_set(&result, s, ' ', 128);
+	check_and_set(&result, s, '-', 512);
+	if (check_and_set(&result, s, '+', 256) == 1)
+		result = result & ~128L;
+	if (!(result & 512))
+		check_and_set(&result, s, '0', 64);
 	if ((*s)[1] >= '1' && (*s)[1] <= '9')
 	{
 		*s += 1;
