@@ -1,25 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vaprintf.h                                        :+:      :+:    :+:   */
+/*   pf_funcs.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: emamenko <emamenko@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/03 16:08:27 by emamenko          #+#    #+#             */
-/*   Updated: 2019/03/03 16:08:27 by emamenko         ###   ########.fr       */
+/*   Created: 2019/03/03 12:45:31 by emamenko          #+#    #+#             */
+/*   Updated: 2019/03/03 16:40:51 by emamenko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "../vaprintf.h"
 
-# include <unistd.h>
-# include <stdarg.h>
-# include <stdlib.h>
+void	filler(char c, int l)
+{
+	int		i;
+	char	*s;
 
-extern char	*vaprintf(const char *format, va_list av);
-
-int			ft_printf(const char *format, ...);
-char		*ft_sprintf(const char *format, ...);
-
-#endif
+	s = malloc(sizeof(char) * (l + 1));
+	s[l] = '\0';
+	i = 0;
+	while (i < l)
+	{
+		s[i] = c;
+		i += 1;
+	}
+	write_str(s);
+	free(s);
+}

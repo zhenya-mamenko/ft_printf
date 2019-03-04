@@ -6,17 +6,17 @@
 /*   By: emamenko <emamenko@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/02 12:13:29 by emamenko          #+#    #+#             */
-/*   Updated: 2019/03/02 18:49:42 by emamenko         ###   ########.fr       */
+/*   Updated: 2019/03/03 16:19:27 by emamenko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../vaprintf.h"
 
 static long double	dmodf(long double value, long double *iptr)
 {
 	long double	max;
 
-	max = (long double)((unsigned long long)-1);
+	max = 1.844674407370955e19L;
 	if (value >= max)
 		*iptr = value;
 	else
@@ -38,7 +38,7 @@ static unsigned int	flen(long double v)
 	if (v < 0.0L)
 		v = -v;
 	dmodf(v, &t);
-	while ((t - 1.0L) > __LDBL_EPSILON__)
+	while (t >= 1.0L)
 	{
 		i += 1;
 		t /= 10.0L;
@@ -50,9 +50,9 @@ static void			to_s(long double v, char *s)
 {
 	long double	t;
 
-	if (((v / 10) - 1.0L) > __LDBL_EPSILON__)
+	dmodf(v / 10, &t);
+	if (t >= 1.0L)
 	{
-		dmodf(v / 10, &t);
 		to_s(t, s - 1);
 		t = v - t * 10;
 		while (t >= 10)
@@ -73,9 +73,7 @@ void				write_float(char f, long double v, unsigned long flags)
 	char				*res;
 	long double			t;
 
-	if (f == ' ' && v == 0 && flags == 0)
-		;
-	l = flen(v) + (v < 0 ? 1 : 0);
+	l = flen(v) + (v < 0 ? 1 : 0) + (f == 'f' ? 0 : 0);
 	res = malloc(sizeof(char) * (l + 1));
 	res[l] = '\0';
 	if (v < 0)
@@ -85,9 +83,10 @@ void				write_float(char f, long double v, unsigned long flags)
 	}
 	t = dmodf(v, &t);
 	to_s(v, res + l - 1);
+	l = (flags & 32) ? (flags & (255LL << 48)) >> 48 : 6;
+	write_flags_str(res, 0, flags, 'f');
 	write_str(res);
 	free(res);
-	l = (flags & 32) ? (flags & (255LL << 48)) >> 48 : 6;
 	if ((t == 0.0L && l == 0) || l == 0)
 	{
 		if (flags & 16)
@@ -99,9 +98,7 @@ void				write_float(char f, long double v, unsigned long flags)
 		t *= 10;
 	write_str(".");
 	res = itoa_base_u((unsigned long)(t + 0.5), 10, "0123456789");
-	i = l - len(res);
-	while (i-- > 0)
-		write_str("0");
+	filler('0', l - len(res));
 	write_str(res);
 	free(res);
 }

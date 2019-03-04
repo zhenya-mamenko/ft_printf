@@ -1,21 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   helpers.c                                          :+:      :+:    :+:   */
+/*   atoi_s.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: emamenko <emamenko@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/11 15:33:42 by emamenko          #+#    #+#             */
-/*   Updated: 2019/02/28 18:29:04 by emamenko         ###   ########.fr       */
+/*   Updated: 2019/03/03 16:19:27 by emamenko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../vaprintf.h"
 
 static int	check(char c, int f, long v)
 {
-	int	result;
-	int	r;
+	int		result;
+	int		r;
 
 	result = c >= '0' && c <= '9' ? 0 : 3;
 	result = (c == '+' || c == '-') ? 1 : result;
@@ -61,16 +61,4 @@ int			atoi_s(char **str)
 	}
 	(*str)--;
 	return (result);
-}
-
-void		filler(char c, int l)
-{
-	int		i;
-
-	i = 0;
-	while (i < l)
-	{
-		write(1, &c, 1);
-		i += 1;
-	}
 }

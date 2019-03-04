@@ -5,5 +5,11 @@
 	"code-eol.color": "#3b3b3b",
 	"files.trimTrailingWhitespace": true,
 	"norminette.command": "norminette",
-	"norminette.fileregex": "^ft.*\\.[ch]$",
+	"norminette.fileregex": "^.*\\.[ch]$",
+	"files.associations": {
+		"locale.h": "c",
+		"xlocale.h": "c",
+		"_stdlib.h": "c",
+		"cdefs.h": "c"
+	},
 }
