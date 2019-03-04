@@ -6,7 +6,7 @@
 /*   By: emamenko <emamenko@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/03 18:18:18 by emamenko          #+#    #+#             */
-/*   Updated: 2019/03/03 22:49:39 by emamenko         ###   ########.fr       */
+/*   Updated: 2019/03/04 00:03:11 by emamenko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,5 +56,6 @@ long double			dmodf(long double value, long double *iptr);
 unsigned int		flen(long double v);
 long double			pw(int l);
 char				*ftoa(long double v);
+void				non_printable(char *s, int l);
 
 #endif

@@ -6,11 +6,12 @@
 /*   By: emamenko <emamenko@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/03 16:59:55 by emamenko          #+#    #+#             */
-/*   Updated: 2019/03/03 17:36:09 by emamenko         ###   ########.fr       */
+/*   Updated: 2019/03/03 23:40:01 by emamenko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vaprintf.h"
+#include "resolvers.h"
 
 static int		check_and_set(unsigned long *result, char **f,
 	const char c, const unsigned long flag)
@@ -67,31 +68,30 @@ unsigned long	resolve_len_flags(char **s)
 	return (result);
 }
 
+int				check_conversion(char c)
+{
+	int		i;
+
+	i = 0;
+	while (i < RCOUNT)
+	{
+		if (c == resolvers[i].conversion)
+			return (resolvers[i].type);
+		i += 1;
+	}
+	return (0);
+}
+
 int				resolve(char **s, unsigned long *flags)
 {
-	int	result;
+	int		result;
 
-	result = 0;
 	if ((*s)[1] == '#' || (*s)[1] == '0' || (*s)[1] == '-' || (*s)[1] == '+' ||
 		(*s)[1] == ' ' || (*s)[1] == '.' || ((*s)[1] >= '0' && (*s)[1] <= '9'))
 		*flags += resolve_flags(s);
 	if ((*s)[1] == 'l' || (*s)[1] == 'L' || (*s)[1] == 'h')
 		*flags += resolve_len_flags(s);
-	if ((*s)[1] == '%')
-		result = 1;
-	else if ((*s)[1] == 's')
-		result = 2;
-	else if ((*s)[1] == 'c')
-		result = 3;
-	else if ((*s)[1] == 'p')
-		result = 4;
-	else if ((*s)[1] == 'd' || (*s)[1] == 'i' || (*s)[1] == 'o' ||
-		(*s)[1] == 'u' || (*s)[1] == 'x' || (*s)[1] == 'X' || (*s)[1] == 'b')
-		result = 5;
-	else if ((*s)[1] == 'f')
-		result = 6;
-	else if ((*s)[1] == '~')
-		result = 7;
+	result = check_conversion((*s)[1]);
 	*s += 1;
 	return (result);
 }

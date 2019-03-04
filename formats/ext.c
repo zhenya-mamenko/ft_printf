@@ -6,7 +6,7 @@
 /*   By: emamenko <emamenko@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/02 19:28:28 by emamenko          #+#    #+#             */
-/*   Updated: 2019/03/03 16:19:27 by emamenko         ###   ########.fr       */
+/*   Updated: 2019/03/04 00:07:00 by emamenko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,4 +65,21 @@ void			render_format(char **f)
 	}
 	process_format((const char *)((*f) + b), i - b);
 	(*f) += i;
+}
+
+void			non_printable(char *s, int l)
+{
+	int		i;
+
+	i = 0;
+	while (s[i] && (i < l || l == 0))
+	{
+		if (s[i] >= 0 && s[i] <= 31)
+			write_str(g_nonprintable[(int)s[i]]);
+		else
+			write_str_n(&s[i], 1);
+		i += 1;
+	}
+	if (i == 0)
+		write_str(g_nonprintable[0]);
 }

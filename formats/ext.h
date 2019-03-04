@@ -6,7 +6,7 @@
 /*   By: emamenko <emamenko@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/02 19:33:21 by emamenko          #+#    #+#             */
-/*   Updated: 2019/03/03 18:17:00 by emamenko         ###   ########.fr       */
+/*   Updated: 2019/03/03 23:28:34 by emamenko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,16 @@ static t_format		g_formats[FCOUNT] = {
 	{"blmagenta", "105", "Light magenta background"},
 	{"blcyan", "106", "Light cyan background"},
 	{"bwhite", "107", "White background"}
+};
+
+static char			*g_nonprintable[32] = {
+	"[NUL]", "[SOH]", "[STX]", "[ETX]", "[EOT]",
+	"[ENQ]", "[ACK]", "[BEL]", "[BS]", "[TAB]",
+	"[LF]", "[VT]", "[FF]", "[CR]", "[SO]",
+	"[SI]", "[DLE]", "[DC1]", "[DC2]", "[DC3]",
+	"[DC4]", "[NAK]", "[SYN]", "[ETB]", "[CAN]",
+	"[EM]", "[SUB]", "[ESC]", "[FS]", "[GS]",
+	"[RS]", "[US]"
 };
 
 #endif

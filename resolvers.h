@@ -1,26 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   resolvers.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: emamenko <emamenko@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/03 18:17:47 by emamenko          #+#    #+#             */
-/*   Updated: 2019/03/03 23:10:04 by emamenko         ###   ########.fr       */
+/*   Created: 2019/03/03 23:26:49 by emamenko          #+#    #+#             */
+/*   Updated: 2019/03/03 23:59:03 by emamenko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#ifndef RESOLVERS_H
+# define RESOLVERS_H
 
-# include <unistd.h>
-# include <stdarg.h>
-# include <stdlib.h>
+# define RCOUNT 15
 
-extern char	*vaprintf(const char *format, va_list av);
+typedef struct	s_resolve
+{
+	char		conversion;
+	int			type;
+}				t_resolve;
 
-int			ft_printf(const char *format, ...);
-int			ft_printf_fd(int fd, const char *format, ...);
-char		*ft_sprintf(const char *format, ...);
+t_resolve		resolvers[RCOUNT] = {
+	{'%', 1},
+	{'s', 2},
+	{'c', 3},
+	{'p', 4},
+	{'d', 5},
+	{'i', 5},
+	{'o', 5},
+	{'u', 5},
+	{'X', 5},
+	{'x', 5},
+	{'b', 5},
+	{'f', 6},
+	{'~', 7},
+	{'r', 8},
+	{'R', 8}
+};
 
 #endif
