@@ -6,7 +6,7 @@
 /*   By: emamenko <emamenko@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/03 18:18:18 by emamenko          #+#    #+#             */
-/*   Updated: 2019/03/03 19:22:20 by emamenko         ###   ########.fr       */
+/*   Updated: 2019/03/03 22:49:39 by emamenko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,10 @@
 # include <stdlib.h>
 # include <stdarg.h>
 # include "formats/ext.h"
+
+# define LLONG_MAX	__LONG_LONG_MAX__
+# define LLONG_MIN	(-__LONG_LONG_MAX__-1LL)
+# define ULLONG_MAX	(__LONG_LONG_MAX__*2ULL+1ULL)
 
 static const char	*g_bstr = "0123456789abcdef";
 static const char	*g_bstr_c = "0123456789ABCDEF";
@@ -48,5 +52,9 @@ void				render_format(char **f);
 int					resolve(char **s, unsigned long *flags);
 unsigned long		resolve_len_flags(char **s);
 unsigned long		resolve_flags(char **s);
+long double			dmodf(long double value, long double *iptr);
+unsigned int		flen(long double v);
+long double			pw(int l);
+char				*ftoa(long double v);
 
 #endif

@@ -24,7 +24,7 @@ int main(int ac, char **av)
 
 	ft_printf("ft_printf -- binary=%015b\n", 160);
 
-	long double ld = 98765432101234567890123456789.1234567890L;
+	long double ld = 0.12345678901234567890123456789L;
 	//printf("%.10Lf\n", __LDBL_MAX__);
 /*	long long ll = (long long)ld;
 
@@ -35,10 +35,10 @@ int main(int ac, char **av)
 		0.12345678901234567890123456789,
 		ll);
 */
-	printf("%.5Lf \n", ld);
-	ft_printf("%.5Lf\n", ld);
-	printf("%10.3f\n", 10.12);
-	ft_printf("%10.3f\n", 10.12);
+	printf("%.22Lf|\n", ld);
+	ft_printf("%.22Lf|\n", ld);
+	printf("%.0Lf\n", 18446744073709551615.0L);
+	ft_printf("%.0Lf\n", 18446744073709551615.0L);
 /*
 	int i = 0;
 	while (i < 39)

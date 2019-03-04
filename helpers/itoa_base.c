@@ -6,7 +6,7 @@
 /*   By: emamenko <emamenko@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/26 17:30:12 by emamenko          #+#    #+#             */
-/*   Updated: 2019/03/03 16:19:27 by emamenko         ###   ########.fr       */
+/*   Updated: 2019/03/03 22:37:08 by emamenko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,24 +16,13 @@ static int	len_base(unsigned long long value, int base)
 {
 	int		l;
 
-	l = 0;
+	l = (value == 0) ? 1 : 0;
 	while (value != 0)
 	{
 		l++;
 		value /= base;
 	}
 	return (l);
-}
-
-static void	to_base(char *r, long long value, int base, const char *b_str)
-{
-	*r = b_str[value % base];
-	r--;
-	value /= base;
-	if (value >= base)
-		to_base(r, value, base, b_str);
-	else
-		*r = b_str[value];
 }
 
 static void	to_base_u(char *r, unsigned long long value, int base,
@@ -78,7 +67,7 @@ char		*itoa_base(long long val, int base, const char *base_str)
 		*result = '-';
 		result++;
 		l--;
-		if (val == (-__LONG_LONG_MAX__ - 1LL))
+		if (val == LLONG_MIN)
 		{
 			*result = '9';
 			result++;
@@ -88,6 +77,6 @@ char		*itoa_base(long long val, int base, const char *base_str)
 		else
 			val = -val;
 	}
-	to_base(result + l - 1, val, base, base_str);
+	to_base_u(result + l - 1, (unsigned long long)val, base, base_str);
 	return (s);
 }

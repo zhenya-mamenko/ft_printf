@@ -6,7 +6,7 @@
 #    By: emamenko <emamenko@student.42.us.org>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/02/11 13:54:51 by emamenko          #+#    #+#              #
-#    Updated: 2019/03/03 17:01:40 by emamenko         ###   ########.fr        #
+#    Updated: 2019/03/03 20:51:41 by emamenko         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ SOURCES	:=	ft_printf.c vaprintf.c resolvers.c \
 			formats/string.c formats/integer.c formats/float.c formats/ext.c \
 			\
 			helpers/atoi_s.c helpers/itoa_base.c helpers/str_funcs.c \
-			helpers/pf_funcs.c
+			helpers/pf_funcs.c helpers/ftoa.c
 
 OBJECTS	:=	$(SOURCES:.c=.o)
 OBJECTS	:=	$(subst formats/,,$(OBJECTS))
