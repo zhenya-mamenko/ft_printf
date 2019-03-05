@@ -6,53 +6,47 @@
 /*   By: emamenko <emamenko@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/03 16:10:06 by emamenko          #+#    #+#             */
-/*   Updated: 2019/03/03 23:11:11 by emamenko         ###   ########.fr       */
+/*   Updated: 2019/03/04 20:25:42 by emamenko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-char	*ft_sprintf(const char *format, ...)
+int		ft_sprintf(char **s, const char *format, ...)
 {
-	char		*s;
 	va_list		av;
+	int			result;
 
 	va_start(av, format);
-	s = vaprintf(format, av);
+	result = vaprintf(s, format, av);
 	va_end(av);
-	return (s);
+	return (result);
 }
 
 int		ft_printf(const char *format, ...)
 {
-	int			l;
 	char		*s;
 	va_list		av;
+	int			result;
 
 	va_start(av, format);
-	s = vaprintf(format, av);
+	result = vaprintf(&s, format, av);
 	va_end(av);
-	l = 0;
-	while (s[l])
-		l++;
-	write(1, s, l);
+	write(1, s, result);
 	free(s);
-	return (l);
+	return (result);
 }
 
 int		ft_printf_fd(int fd, const char *format, ...)
 {
-	int			l;
 	char		*s;
 	va_list		av;
+	int			result;
 
 	va_start(av, format);
-	s = vaprintf(format, av);
+	result = vaprintf(&s, format, av);
 	va_end(av);
-	l = 0;
-	while (s[l])
-		l++;
-	write(fd, s, l);
+	write(fd, s, result);
 	free(s);
-	return (l);
+	return (result);
 }

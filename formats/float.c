@@ -6,24 +6,11 @@
 /*   By: emamenko <emamenko@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/02 12:13:29 by emamenko          #+#    #+#             */
-/*   Updated: 2019/03/03 22:52:54 by emamenko         ###   ########.fr       */
+/*   Updated: 2019/03/04 10:38:01 by emamenko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../vaprintf.h"
-
-static void	free_array(char **a, int count)
-{
-	int		i;
-
-	i = 0;
-	while (i < count)
-	{
-		if (a[i])
-			free(a[i]);
-		i += 1;
-	}
-}
 
 char		*xfloat(long double v)
 {

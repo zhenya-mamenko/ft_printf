@@ -6,7 +6,7 @@
 /*   By: emamenko <emamenko@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/03 18:17:47 by emamenko          #+#    #+#             */
-/*   Updated: 2019/03/03 23:10:04 by emamenko         ###   ########.fr       */
+/*   Updated: 2019/03/04 20:26:43 by emamenko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@
 # include <stdarg.h>
 # include <stdlib.h>
 
-extern char	*vaprintf(const char *format, va_list av);
+extern int	vaprintf(char **s, const char *format, va_list av);
 
 int			ft_printf(const char *format, ...);
 int			ft_printf_fd(int fd, const char *format, ...);
-char		*ft_sprintf(const char *format, ...);
+int			ft_sprintf(char **s, const char *format, ...);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: emamenko <emamenko@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/26 17:30:12 by emamenko          #+#    #+#             */
-/*   Updated: 2019/03/03 22:37:08 by emamenko         ###   ########.fr       */
+/*   Updated: 2019/03/04 21:15:41 by emamenko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ static void	to_base_u(char *r, unsigned long long value, int base,
 {
 	*r = b_str[value % base];
 	r--;
+	if (value < (unsigned int)base)
+		return ;
 	value /= base;
 	if (value >= (unsigned int)base)
 		to_base_u(r, value, base, b_str);
@@ -52,31 +54,31 @@ char		*itoa_base_u(unsigned long long value, int base,
 	return (s);
 }
 
-char		*itoa_base(long long val, int base, const char *base_str)
+char		*itoa_base(long long v, int base, const char *base_str)
 {
-	char	*result;
-	char	*s;
+	char	*s[2];
 	int		l;
 
-	l = len_base(val >= 0 ? val : -(val / 10), base) + (val < 0 ? 2 : 0);
-	result = malloc(sizeof(char) * (l + 1));
-	s = result;
-	result[l] = '\0';
-	if (base == 10 && val < 0)
+	l = len_base(v >= 0 ? v : -(v / 10), base) +
+		(v < 0 ? 1 : 0) + (v <= -10 ? 1 : 0);
+	s[0] = malloc(sizeof(char) * (l + 1));
+	s[1] = s[0];
+	s[0][l] = '\0';
+	if (base == 10 && v < 0)
 	{
-		*result = '-';
-		result++;
+		*s[0] = '-';
+		s[0]++;
 		l--;
-		if (val == LLONG_MIN)
+		if (v == LLONG_MIN)
 		{
-			*result = '9';
-			result++;
+			*s[0] = '9';
+			s[0]++;
 			l--;
-			val = 223372036854775808LL;
+			v = 223372036854775808LL;
 		}
 		else
-			val = -val;
+			v = -v;
 	}
-	to_base_u(result + l - 1, (unsigned long long)val, base, base_str);
-	return (s);
+	to_base_u(s[0] + l - 1, (unsigned long long)v, base, base_str);
+	return (s[1]);
 }

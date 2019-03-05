@@ -6,14 +6,14 @@
 /*   By: emamenko <emamenko@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/03 23:26:49 by emamenko          #+#    #+#             */
-/*   Updated: 2019/03/03 23:59:03 by emamenko         ###   ########.fr       */
+/*   Updated: 2019/03/04 20:38:39 by emamenko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef RESOLVERS_H
 # define RESOLVERS_H
 
-# define RCOUNT 15
+# define RCOUNT 18
 
 typedef struct	s_resolve
 {
@@ -21,7 +21,7 @@ typedef struct	s_resolve
 	int			type;
 }				t_resolve;
 
-t_resolve		resolvers[RCOUNT] = {
+t_resolve		g_resolvers[RCOUNT] = {
 	{'%', 1},
 	{'s', 2},
 	{'c', 3},
@@ -36,7 +36,10 @@ t_resolve		resolvers[RCOUNT] = {
 	{'f', 6},
 	{'~', 7},
 	{'r', 8},
-	{'R', 8}
+	{'R', 8},
+	{'D', 5},
+	{'I', 5},
+	{'U', 5}
 };
 
 #endif

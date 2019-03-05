@@ -6,7 +6,7 @@
 /*   By: emamenko <emamenko@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/03 18:18:18 by emamenko          #+#    #+#             */
-/*   Updated: 2019/03/04 00:03:11 by emamenko         ###   ########.fr       */
+/*   Updated: 2019/03/04 20:26:55 by emamenko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,12 @@
 # define LLONG_MIN	(-__LONG_LONG_MAX__-1LL)
 # define ULLONG_MAX	(__LONG_LONG_MAX__*2ULL+1ULL)
 
+# define BUFFSIZE	1000
+
 static const char	*g_bstr = "0123456789abcdef";
 static const char	*g_bstr_c = "0123456789ABCDEF";
 
-char				*vaprintf(const char *format, va_list av);
+int					vaprintf(char **s, const char *format, va_list av);
 char				*itoa_base(long long value, int base,
 						const char *base_str);
 char				*itoa_base_u(unsigned long long value, int base,
@@ -57,5 +59,6 @@ unsigned int		flen(long double v);
 long double			pw(int l);
 char				*ftoa(long double v);
 void				non_printable(char *s, int l);
+void				free_array(char **a, int count);
 
 #endif
