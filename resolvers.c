@@ -6,7 +6,7 @@
 /*   By: emamenko <emamenko@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/03 16:59:55 by emamenko          #+#    #+#             */
-/*   Updated: 2019/03/04 21:34:43 by emamenko         ###   ########.fr       */
+/*   Updated: 2019/03/04 22:28:49 by emamenko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,20 @@ static int		check_and_set(unsigned long *result, char **f,
 	return (0);
 }
 
+static int		simple_checks(unsigned long *result, char **s)
+{
+	int		chg;
+
+	chg = 0;
+	if ((chg = check_and_set(result, s, '+', 256)) == 1)
+		*result = *result & ~128L;
+	chg += check_and_set(result, s, '#', 16);
+	chg += check_and_set(result, s, ' ', 128);
+	chg += check_and_set(result, s, '-', 512);
+	chg += check_and_set(result, s, '0', 64);
+	return (chg);
+}
+
 unsigned long	resolve_flags(char **s)
 {
 	unsigned long	result;
@@ -35,12 +49,7 @@ unsigned long	resolve_flags(char **s)
 	chg = 1;
 	while (chg != 0)
 	{
-		if ((chg = check_and_set(&result, s, '+', 256)) == 1)
-			result = result & ~128L;
-		chg += check_and_set(&result, s, '#', 16);
-		chg += check_and_set(&result, s, ' ', 128);
-		chg += check_and_set(&result, s, '-', 512);
-		chg += check_and_set(&result, s, '0', 64);
+		chg = simple_checks(&result, s);
 		if ((*s)[1] >= '1' && (*s)[1] <= '9')
 		{
 			*s += 1;

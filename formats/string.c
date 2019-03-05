@@ -6,7 +6,7 @@
 /*   By: emamenko <emamenko@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/03 12:43:23 by emamenko          #+#    #+#             */
-/*   Updated: 2019/03/04 21:59:27 by emamenko         ###   ########.fr       */
+/*   Updated: 2019/03/04 22:14:35 by emamenko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ int			write_str_n(const char *s, int l)
 	char		*tmp;
 	int			f;
 
+	if (l == 0)
+		return (0);
 	f = 0;
 	while (g_outlen + l > slen)
 	{
@@ -90,7 +92,7 @@ void		write_flags_str(char *s, int n, unsigned long f, char x)
 	{
 		free(s);
 		s = join(2, w[0] != 0 ? " " : "", "");
-		w[5] = w[6];
+		w[5] = len(s);
 	}
 	if (w[0] <= (w[5] - (x == 'c' && w[6] == 2 ? 1 : 0) + w[4]) && w[1] < w[5])
 	{
