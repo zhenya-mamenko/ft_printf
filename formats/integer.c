@@ -6,7 +6,7 @@
 /*   By: emamenko <emamenko@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/27 10:49:27 by emamenko          #+#    #+#             */
-/*   Updated: 2019/03/04 21:27:50 by emamenko         ###   ########.fr       */
+/*   Updated: 2019/03/07 11:38:39 by emamenko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int			write_ull(char f, unsigned long long v, unsigned long flags)
 	l = (flags & 32) ? (flags & (255LL << 48)) >> 48 : l;
 	s[0] = get_str(f, v);
 	s[1] = NULL;
-	if (flags & 16 && v != 0)
+	if ((flags & 16 && v != 0) || flags & 4096)
 	{
 		if (f == 'o')
 			s[1] = join(2, "0", "");
