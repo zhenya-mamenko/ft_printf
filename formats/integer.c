@@ -6,7 +6,7 @@
 /*   By: emamenko <emamenko@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/27 10:49:27 by emamenko          #+#    #+#             */
-/*   Updated: 2019/03/07 11:38:39 by emamenko         ###   ########.fr       */
+/*   Updated: 2019/03/10 13:29:23 by emamenko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static char	*get_str(char f, unsigned long long v)
 
 	if (f == 'x' || f == 'X')
 		result = itoa_base_u(v, 16, f == 'x' ? g_bstr : g_bstr_c);
-	else if (f == 'u' || f == 'U')
+	else if (f == 'u')
 		result = itoa_base_u(v, 10, g_bstr);
 	else if (f == 'o')
 		result = itoa_base_u(v, 8, g_bstr);
