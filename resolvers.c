@@ -6,7 +6,7 @@
 /*   By: emamenko <emamenko@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/03 16:59:55 by emamenko          #+#    #+#             */
-/*   Updated: 2019/03/04 22:28:49 by emamenko         ###   ########.fr       */
+/*   Updated: 2019/03/10 20:57:15 by emamenko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,18 @@ static int		check_and_set(unsigned long *result, char **f,
 static int		simple_checks(unsigned long *result, char **s)
 {
 	int		chg;
+	int		r;
 
 	chg = 0;
-	if ((chg = check_and_set(result, s, '+', 256)) == 1)
+	chg += check_and_set(result, s, '#', 16L);
+	chg += check_and_set(result, s, '0', 64L);
+	chg += check_and_set(result, s, ' ', 128L);
+	if ((r = check_and_set(result, s, '+', 256L)) == 1 || *result & 256L)
 		*result = *result & ~128L;
-	chg += check_and_set(result, s, '#', 16);
-	chg += check_and_set(result, s, ' ', 128);
-	chg += check_and_set(result, s, '-', 512);
-	chg += check_and_set(result, s, '0', 64);
+	chg += r;
+	if ((r = check_and_set(result, s, '-', 512L)) == 1 || *result & 512L)
+		*result = *result & ~64L;
+	chg += r;
 	return (chg);
 }
 
@@ -54,14 +58,14 @@ unsigned long	resolve_flags(char **s)
 		{
 			*s += 1;
 			l = atoi_s(s);
-			result = (result & ~(255LL << 56)) | 1024 | (l << 56);
+			result = (result & ~(255LL << 56)) | 1024L | (l << 56);
 			chg += 1;
 		}
 		if ((*s)[1] == '.')
 		{
 			*s += 2;
 			l = atoi_s(s);
-			result = (result & ~(255LL << 48)) | 32 | (l << 48);
+			result = (result & ~(255LL << 48) & ~64L) | 32L | (l << 48);
 			chg += 1;
 		}
 	}
@@ -78,7 +82,7 @@ unsigned long	resolve_len_flags(char **s)
 	else if ((*s)[1] == 'l' || (*s)[1] == 'j' || (*s)[1] == 'z')
 		result |= ((*s)[2] == 'l' && (*s)[1] != 'j' && (*s)[1] != 'z' ? 8 : 4);
 	else if ((*s)[1] == 'L')
-		result |= 2048;
+		result |= 2048L;
 	*s += 1 + ((*s)[2] == 'h' || (*s)[2] == 'l' ? 1 : 0);
 	return (result);
 }

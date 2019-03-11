@@ -6,7 +6,7 @@
 /*   By: emamenko <emamenko@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/25 10:26:32 by emamenko          #+#    #+#             */
-/*   Updated: 2019/03/07 11:38:09 by emamenko         ###   ########.fr       */
+/*   Updated: 2019/03/10 18:06:47 by emamenko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static void	parse(int type, char **f, unsigned long fl, va_list av)
 	char	*s;
 
 	if (type == 1)
-		write_flags_str("%", 0, fl, **f);
+		write_flags_str("%", 0, fl & ~32, **f);
 	else if (type == 2)
 		write_flags_str((s = va_arg(av, char *)) == NULL ? "(null)" : s,
 			(fl & (255LL << 48)) ? (fl & (255LL << 48)) >> 48 : 0, fl, **f);
@@ -40,7 +40,7 @@ static void	parse(int type, char **f, unsigned long fl, va_list av)
 		write_flags_str(&cc, 1, fl, **f);
 	}
 	else if (type == 4)
-		write_ull('x', (unsigned long)va_arg(av, void *), 4096);
+		write_ull('x', (unsigned long)va_arg(av, void *), fl | 4096);
 	else if (type == 5)
 		int_wrapper(av, fl, **f);
 	else if (type == 6)
