@@ -6,7 +6,7 @@
 /*   By: emamenko <emamenko@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/03 12:43:23 by emamenko          #+#    #+#             */
-/*   Updated: 2019/03/10 20:31:31 by emamenko         ###   ########.fr       */
+/*   Updated: 2019/03/20 15:33:51 by emamenko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int			write_str_n(const char *s, int l)
 	if (l == 0)
 		return (0);
 	f = 0;
-	while (g_outlen + l > slen)
+	while (g_outlen + l >= slen)
 	{
 		slen += BUFFSIZE;
 		f = 1;
