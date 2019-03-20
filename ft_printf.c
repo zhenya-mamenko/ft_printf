@@ -6,7 +6,7 @@
 /*   By: emamenko <emamenko@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/03 16:10:06 by emamenko          #+#    #+#             */
-/*   Updated: 2019/03/04 20:25:42 by emamenko         ###   ########.fr       */
+/*   Updated: 2019/03/20 12:39:41 by emamenko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,4 +49,16 @@ int		ft_printf_fd(int fd, const char *format, ...)
 	write(fd, s, result);
 	free(s);
 	return (result);
+}
+
+char	*ft_ssprintf(const char *format, ...)
+{
+	va_list		av;
+	char		*s;
+
+	s = NULL;
+	va_start(av, format);
+	vaprintf(&s, format, av);
+	va_end(av);
+	return (s);
 }
