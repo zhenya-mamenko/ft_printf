@@ -6,7 +6,7 @@
 /*   By: emamenko <emamenko@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/25 10:26:32 by emamenko          #+#    #+#             */
-/*   Updated: 2019/03/10 18:06:47 by emamenko         ###   ########.fr       */
+/*   Updated: 2019/03/20 14:45:24 by emamenko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ int			vaprintf(char **s, const char *format, va_list av)
 			write_str_n(format, 1);
 		format++;
 	}
+	g_output[g_outlen] = '\0';
 	*s = g_output;
 	return (g_outlen);
 }
